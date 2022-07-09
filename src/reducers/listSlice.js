@@ -31,8 +31,8 @@ const initialState = {
                 id:2,
                 text: 'learn tailwind'
             },  {
-                id:2,
-                text: 'learn tailwind'
+                id:3,
+                text: 'learn bootstrap'
             }
         ]
     },
