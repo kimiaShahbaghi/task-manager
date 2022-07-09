@@ -1,3 +1,4 @@
+import { cardMediaClasses } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -41,12 +42,13 @@ const initialState = {
   ],
 };
 let listId = 2;
+let cardId = 4;
+
 export const listSlice = createSlice({
   name: "list",
   initialState,
   reducers: {
     addList: (state, action) => {
-      console.log("action from slice", action);
       const newList = {
         title: action.payload,
         id: listId,
@@ -55,11 +57,28 @@ export const listSlice = createSlice({
       listId++;
       state.lists = [...state.lists, newList];
     },
+    addCard: (state, action) => {
+      console.log("add card action", action);
+      const newCard = {
+        id: cardId,
+        text: action.payload.text,
+      };
+      cardId++;
+      const newState = state.lists.map((list) => {
+        if (list.id === action.payload.id) {
+          return {
+            ...list,
+            cards: [...list.cards, newCard],
+          };
+        } else return list;
+      });
+      state.lists = newState;
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addList } = listSlice.actions;
+
+export const { addList, addCard } = listSlice.actions;
 export const selectLists = (state) => state.listReducer.lists;
 
 export default listSlice.reducer;

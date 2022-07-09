@@ -13,7 +13,7 @@ const App = () => {
       <p>trello</p>
       <div className="App__container">
         {lists.map((list) => (
-          <List key={list.id} title={list.title} cards={list.cards} />
+          <List key={list.id} title={list.title} cards={list.cards} listId={list.id} />
         ))}
         <AddButton type="list" />
       </div>
