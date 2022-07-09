@@ -1,15 +1,20 @@
 import React from "react";
-
-import { Card,  Typography } from "@material-ui/core";
+import { Draggable } from "react-beautiful-dnd";
+import { Card, Typography } from "@material-ui/core";
 const Cards = (props) => {
-  return(
-    <Card style={{padding: 10}}>
-        
+  console.log("draggable id",props.id)
+  return (
+    <Draggable draggableId={String(props.id)} index={props.index}>
+      {provided => { return(
+        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+        <Card style={{ padding: 10 }}>
         <Typography>{props.text}</Typography>
-        
-    </Card>
-  )
-  
+      </Card>
+      </div>
+      )}}
+      
+    </Draggable>
+  );
 };
 
 export default Cards;
