@@ -5,7 +5,6 @@ import AddButton from "./AddButton";
 
 const List = (props) => {
   const cards = props.cards;
-  console.log("cards", cards);
   return (
     <div className="list">
       <h3>{props.title}</h3>

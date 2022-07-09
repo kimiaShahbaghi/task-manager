@@ -7,7 +7,7 @@ import AddButton from "./AddButton";
 
 const App = () => {
   const lists = useSelector(selectLists);
-  console.log("lists", lists);
+
   return (
     <div className="App">
       <p>trello</p>

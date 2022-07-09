@@ -5,10 +5,15 @@ import React, { useState } from "react";
 import "./AddButton.scss";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useDispatch, useSelector } from "react-redux";
+import { addList, selectLists } from "../reducers/listSlice";
 
 const AddButton = (props) => {
+  const dispatch = useDispatch();
   const [formOpen, setFormOpen] = useState(false);
   const [textInput, setTextInput] = useState("");
+
+  const lists = useSelector(selectLists);
 
   const openFormHandler = () => {
     setFormOpen(true);
@@ -27,6 +32,14 @@ const AddButton = (props) => {
   const openButtonTitle = props.type === "list" ? "Add List" : "Add Card";
   const textInputHandler = (event) => {
     setTextInput(event.target.value);
+  };
+
+  const addListHandler = () => {
+    if (textInput) {
+      dispatch(addList(textInput));
+      setTextInput("");
+    } else return;
+    console.log("clicked");
   };
 
   const closeForm = (
@@ -51,15 +64,18 @@ const AddButton = (props) => {
         />
       </Card>
       <div className="openForm__footer">
-        <Button variant="contained" color="secondary">
+        <Button
+          variant="contained"
+          color="secondary"
+          onMouseDown={props.type === "list" ? addListHandler : null}
+        >
           {openButtonTitle}
         </Button>
         <CloseIcon color="action" />
       </div>
     </div>
   );
-  console.log("props");
-  console.log("textinput", textInput);
+  console.log("lists", lists);
   return formOpen ? openForm : closeForm;
 };
 
