@@ -39,7 +39,6 @@ const AddButton = (props) => {
       dispatch(addList(textInput));
       setTextInput("");
     } else return;
-    console.log("clicked");
   };
 
   const addCardHandler = () => {

@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./List.scss";
 import Card from "./Card";
 import AddButton from "./AddButton";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useDispatch } from "react-redux";
-import { deleteList } from "../reducer/listSlice";
+import { deleteList, editTitle } from "../reducer/listSlice";
+import TextareaAutosize from "react-textarea-autosize";
 
 const List = (props) => {
   const dispatch = useDispatch();
+
+  const [titleText, setTitleText] = useState(props.title);
 
   const cards = props.cards;
   const listId = props.listId;
 
   const deleteListHandler = () => {
     dispatch(deleteList(props.index));
+  };
+  const editTitleHandler = (event) => {
+    setTitleText(event.target.value);
+  };
+  const changeTitleHandler = () => {
+    dispatch(editTitle({ index: props.index, text: titleText }));
   };
 
   return (
@@ -31,11 +40,18 @@ const List = (props) => {
               {(provided) => {
                 return (
                   <div {...provided.droppableProps} ref={provided.innerRef}>
-                    <h3 style={{ display: "inline-block" }}>{props.title}</h3>
-                    <DeleteOutlineIcon
-                      style={{ float: "right" }}
-                      onClick={deleteListHandler}
-                    />
+                    <div className="list__header">
+                      <TextareaAutosize
+                        value={titleText}
+                        onChange={editTitleHandler}
+                        onBlur={changeTitleHandler}
+                        className="list__header__title"
+                      />
+                      <DeleteOutlineIcon
+                        style={{ float: "right" }}
+                        onClick={deleteListHandler}
+                      />
+                    </div>
                     {cards.map((card, index) => (
                       <Card
                         key={card.id}
@@ -45,7 +61,7 @@ const List = (props) => {
                         listIndex={props.index}
                       />
                     ))}
-                    <AddButton listsId={listId} />
+                    <AddButton className="list__footer" listsId={listId} />
                     {provided.placeholder}
                   </div>
                 );

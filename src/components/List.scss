@@ -8,4 +8,26 @@
   * {
     margin: 7px;
   }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      border: none;
+      outline: none;
+      resize: none;
+      background: transparent;
+      padding-left: 1rem;
+      font-size: 1.1rem;
+      overflow: hidden;
+      &:focus {
+        background-color: white;
+        border: 1px solid black;
+      }
+    }
+  }
+  &__footer {
+    justify-self: end;
+  }
 }

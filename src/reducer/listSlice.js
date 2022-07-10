@@ -58,7 +58,6 @@ export const listSlice = createSlice({
       state.lists = [...state.lists, newList];
     },
     addCard: (state, action) => {
-      console.log("add card action", action);
       const newCard = {
         id: `list-${cardId}`,
         text: action.payload.text,
@@ -111,11 +110,20 @@ export const listSlice = createSlice({
       const cardIndex = action.payload.cardIndex;
       state.lists[listIndex].cards.splice(cardIndex, 1);
     },
+    editTitle: (state, action) => {
+      state.lists[action.payload.index].title = action.payload.text;
+    },
   },
 });
 
-export const { addList, addCard, sortCrads, deleteList, deleteCard } =
-  listSlice.actions;
+export const {
+  addList,
+  addCard,
+  sortCrads,
+  deleteList,
+  deleteCard,
+  editTitle,
+} = listSlice.actions;
 
 export const selectLists = (state) => state.listReducer.lists;
 

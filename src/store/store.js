@@ -11,8 +11,8 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  listReducer
-})
+  listReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
