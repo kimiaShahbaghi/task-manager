@@ -14,7 +14,6 @@ const List = (props) => {
   const listId = props.listId;
 
   const deleteListHandler = () => {
-    console.log("deleted");
     dispatch(deleteList(props.index));
   };
 

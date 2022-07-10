@@ -116,6 +116,7 @@ export const listSlice = createSlice({
 
 export const { addList, addCard, sortCrads, deleteList, deleteCard } =
   listSlice.actions;
+
 export const selectLists = (state) => state.listReducer.lists;
 
 export default listSlice.reducer;

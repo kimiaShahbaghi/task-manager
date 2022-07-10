@@ -5,15 +5,14 @@ import React, { useState } from "react";
 import "./AddButton.scss";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useDispatch, useSelector } from "react-redux";
-import { addList, selectLists, addCard } from "../reducer/listSlice";
+import { useDispatch } from "react-redux";
+import { addList, addCard } from "../reducer/listSlice";
 
 const AddButton = (props) => {
   const dispatch = useDispatch();
   const [formOpen, setFormOpen] = useState(false);
   const [textInput, setTextInput] = useState("");
 
-  const lists = useSelector(selectLists);
   const isList = props.type === "list" ? true : false;
   const listId = props.listsId;
 
@@ -22,6 +21,7 @@ const AddButton = (props) => {
   };
   const closeFormHandler = () => {
     setFormOpen(false);
+    setTextInput("");
   };
 
   const closeButtonText = isList ? "Add another list" : "Add another Card";
