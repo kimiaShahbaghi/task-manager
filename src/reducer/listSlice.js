@@ -103,10 +103,19 @@ export const listSlice = createSlice({
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
       }
     },
+    deleteList: (state, action) => {
+      state.lists.splice(action.payload, 1);
+    },
+    deleteCard: (state, action) => {
+      const listIndex = action.payload.listIndex;
+      const cardIndex = action.payload.cardIndex;
+      state.lists[listIndex].cards.splice(cardIndex, 1);
+    },
   },
 });
 
-export const { addList, addCard, sortCrads } = listSlice.actions;
+export const { addList, addCard, sortCrads, deleteList, deleteCard } =
+  listSlice.actions;
 export const selectLists = (state) => state.listReducer.lists;
 
 export default listSlice.reducer;

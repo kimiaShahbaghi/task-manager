@@ -78,11 +78,11 @@ const AddButton = (props) => {
         >
           {openButtonTitle}
         </Button>
-        <CloseIcon color="action" />
+        <CloseIcon color="action" onClick={closeFormHandler} />
       </div>
     </div>
   );
-  
+
   return formOpen ? openForm : closeForm;
 };
 
