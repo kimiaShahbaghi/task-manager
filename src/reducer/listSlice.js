@@ -80,10 +80,15 @@ export const listSlice = createSlice({
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-        draggableId,
+        type,
       } = action.payload;
 
-      if (droppableIdStart === droppableIdEnd) {
+      if (type === "list") {
+        const list = state.lists.splice(droppableIndexStart, 1);
+        state.lists.splice(droppableIndexEnd, 0, ...list);
+      }
+
+      if (droppableIdStart === droppableIdEnd && type !== "list") {
         const list = state.lists.find((list) => droppableIdStart === list.id);
         const card = list.cards.splice(droppableIndexStart, 1);
         list.cards.splice(droppableIndexEnd, 0, ...card);

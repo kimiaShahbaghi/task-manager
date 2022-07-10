@@ -16,7 +16,6 @@ const AddButton = (props) => {
   const lists = useSelector(selectLists);
   const isList = props.type === "list" ? true : false;
   const listId = props.listsId;
-  console.log("list id add", listId);
 
   const openFormHandler = () => {
     setFormOpen(true);
@@ -42,14 +41,13 @@ const AddButton = (props) => {
     } else return;
     console.log("clicked");
   };
- 
+
   const addCardHandler = () => {
-    if(textInput){
-      dispatch(addCard({text: textInput, id: listId}));
+    if (textInput) {
+      dispatch(addCard({ text: textInput, id: listId }));
       setTextInput("");
-    }
-    else return;
-  }
+    } else return;
+  };
 
   const closeForm = (
     <div
@@ -84,7 +82,7 @@ const AddButton = (props) => {
       </div>
     </div>
   );
-  console.log("lists", lists);
+  
   return formOpen ? openForm : closeForm;
 };
 

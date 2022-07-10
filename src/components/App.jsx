@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLists } from "../reducer/listSlice";
 import "./App.scss";
 import AddButton from "./AddButton";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sortCrads } from "../reducer/listSlice";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   const lists = useSelector(selectLists);
 
   const onDragEndHandler = (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, type } = result;
     if (!destination) {
       return;
     }
@@ -22,7 +22,7 @@ const App = () => {
         droppableIdEnd: destination.droppableId,
         droppableIndexStart: source.index,
         droppableIndexEnd: destination.index,
-        draggableId: draggableId,
+        type: type,
       })
     );
   };
@@ -31,17 +31,29 @@ const App = () => {
     <DragDropContext onDragEnd={onDragEndHandler}>
       <div className="App">
         <p>trello</p>
-        <div className="App__container">
-          {lists.map((list) => (
-            <List
-              key={list.id}
-              title={list.title}
-              cards={list.cards}
-              listId={list.id}
-            />
-          ))}
-          <AddButton type="list" />
-        </div>
+        <Droppable droppableId="all-lists" direction="horizental" type="list">
+          {(provided) => {
+            return (
+              <div
+                className="App__container"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {lists.map((list, index) => (
+                  <List
+                    key={list.id}
+                    title={list.title}
+                    cards={list.cards}
+                    listId={list.id}
+                    index={index}
+                  />
+                ))}
+                {provided.placeholder}
+                <AddButton type="list" />
+              </div>
+            );
+          }}
+        </Droppable>
       </div>
     </DragDropContext>
   );
