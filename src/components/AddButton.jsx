@@ -6,7 +6,7 @@ import "./AddButton.scss";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
-import { addList, selectLists, addCard } from "../reducers/listSlice";
+import { addList, selectLists, addCard } from "../reducer/listSlice";
 
 const AddButton = (props) => {
   const dispatch = useDispatch();

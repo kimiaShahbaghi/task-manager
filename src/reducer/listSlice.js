@@ -5,36 +5,36 @@ const initialState = {
   lists: [
     {
       title: "ToDo",
-      id: 0,
+      id: `list-${0}`,
       cards: [
         {
-          id: 0,
+          id: `card-${0}`,
           text: "learn typescript",
         },
         {
-          id: 1,
+          id: `card-${1}`,
           text: "learn api",
         },
       ],
     },
     {
       title: "Doing",
-      id: 1,
+      id: `list-${1}`,
       cards: [
         {
-          id: 0,
+          id: `card-${2}`,
           text: "learn react",
         },
         {
-          id: 1,
+          id: `card-${3}`,
           text: "learn sass",
         },
         {
-          id: 2,
+          id: `card-${4}`,
           text: "learn tailwind",
         },
         {
-          id: 3,
+          id: `card-${5}`,
           text: "learn bootstrap",
         },
       ],
@@ -42,7 +42,7 @@ const initialState = {
   ],
 };
 let listId = 2;
-let cardId = 4;
+let cardId = 6;
 
 export const listSlice = createSlice({
   name: "list",
@@ -51,7 +51,7 @@ export const listSlice = createSlice({
     addList: (state, action) => {
       const newList = {
         title: action.payload,
-        id: listId,
+        id: `list-${listId}`,
         cards: [],
       };
       listId++;
@@ -60,7 +60,7 @@ export const listSlice = createSlice({
     addCard: (state, action) => {
       console.log("add card action", action);
       const newCard = {
-        id: cardId,
+        id: `list-${cardId}`,
         text: action.payload.text,
       };
       cardId++;
@@ -74,11 +74,25 @@ export const listSlice = createSlice({
       });
       state.lists = newState;
     },
+    sortCrads: (state, action) => {
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexEnd,
+        droppableIndexStart,
+        draggableId,
+      } = action.payload;
+      
+      if(droppableIdStart === droppableIdEnd){
+        const list = state.lists.find(list => droppableIdStart === list.id);
+        const card = list.cards.splice(droppableIndexStart,1);
+        list.cards.splice(droppableIndexEnd, 0, ...card)
+      }
+    },
   },
 });
 
-
-export const { addList, addCard } = listSlice.actions;
+export const { addList, addCard, sortCrads } = listSlice.actions;
 export const selectLists = (state) => state.listReducer.lists;
 
 export default listSlice.reducer;

@@ -1,16 +1,31 @@
 import React from "react";
 import List from "./List";
-import { useSelector } from "react-redux";
-import { selectLists } from "../reducers/listSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLists } from "../reducer/listSlice";
 import "./App.scss";
 import AddButton from "./AddButton";
 import { DragDropContext } from "react-beautiful-dnd";
+import { sortCrads } from "../reducer/listSlice";
 
 const App = () => {
+  const dispatch = useDispatch();
   const lists = useSelector(selectLists);
-  const onDragEndHandler = () => {
-    
-  }
+
+  const onDragEndHandler = (result) => {
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    dispatch(
+      sortCrads({
+        droppableIdStart: source.droppableId,
+        droppableIdEnd: destination.droppableId,
+        droppableIndexStart: source.index,
+        droppableIndexEnd: destination.index,
+        draggableId: draggableId,
+      })
+    );
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEndHandler}>
