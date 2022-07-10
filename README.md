@@ -6,7 +6,7 @@ The project made using React, ReduxToolkit, redux-persist and SASS based on trel
 - add new list
 - add new card
 - drag cards and lists
-- delete lists and cards
+- delete cards and lists
 - editable title
 
 ## Getting Started
@@ -14,7 +14,7 @@ The project made using React, ReduxToolkit, redux-persist and SASS based on trel
 ```
 git clone https://github.com/kimiaShahbaghi/task-manager.git
 ```
-In the project directory:
+In the project directory: <br/>
 2. install dependencies
 ```
 npm install
