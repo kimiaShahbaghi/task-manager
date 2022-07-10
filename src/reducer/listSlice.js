@@ -1,4 +1,3 @@
-import { cardMediaClasses } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -10,10 +9,12 @@ const initialState = {
         {
           id: `card-${0}`,
           text: "learn typescript",
+          description: undefined,
         },
         {
           id: `card-${1}`,
           text: "learn api",
+          description: undefined,
         },
       ],
     },
@@ -24,24 +25,28 @@ const initialState = {
         {
           id: `card-${2}`,
           text: "learn react",
+          description: undefined,
         },
         {
           id: `card-${3}`,
           text: "learn sass",
+          description: undefined,
         },
         {
           id: `card-${4}`,
           text: "learn tailwind",
+          description: undefined,
         },
         {
           id: `card-${5}`,
           text: "learn bootstrap",
+          description: undefined,
         },
       ],
     },
   ],
 };
-let listId = 2;
+let listId = 3;
 let cardId = 6;
 
 export const listSlice = createSlice({
@@ -54,7 +59,7 @@ export const listSlice = createSlice({
         id: `list-${listId}`,
         cards: [],
       };
-      listId++;
+      ++listId;
       state.lists = [...state.lists, newList];
     },
     addCard: (state, action) => {
@@ -62,7 +67,7 @@ export const listSlice = createSlice({
         id: `list-${cardId}`,
         text: action.payload.text,
       };
-      cardId++;
+      ++cardId;
       const newState = state.lists.map((list) => {
         if (list.id === action.payload.id) {
           return {
@@ -113,6 +118,11 @@ export const listSlice = createSlice({
     editTitle: (state, action) => {
       state.lists[action.payload.index].title = action.payload.text;
     },
+    setDescription: (state, action) => {
+      state.lists[action.payload.listIndex].cards[
+        action.payload.cardIndex
+      ].description = action.payload.text;
+    },
   },
 });
 
@@ -123,6 +133,7 @@ export const {
   deleteList,
   deleteCard,
   editTitle,
+  setDescription,
 } = listSlice.actions;
 
 export const selectLists = (state) => state.listReducer.lists;

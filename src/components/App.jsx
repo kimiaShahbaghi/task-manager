@@ -30,7 +30,6 @@ const App = () => {
   return (
     <DragDropContext onDragEnd={onDragEndHandler}>
       <div className="App">
-        <p>trello</p>
         <Droppable droppableId="all-lists" direction="horizental" type="list">
           {(provided) => {
             return (

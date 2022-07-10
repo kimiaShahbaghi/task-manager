@@ -6,6 +6,7 @@ The project made using React, ReduxToolkit, redux-persist and SASS based on trel
 
 - add new list
 - add new card
+- add description to cards
 - drag cards and lists
 - delete cards and lists
 - editable title

@@ -59,6 +59,7 @@ const List = (props) => {
                         text={card.text}
                         id={card.id}
                         listIndex={props.index}
+                        description={card.description}
                       />
                     ))}
                     <AddButton className="list__footer" listsId={listId} />
