@@ -20,6 +20,7 @@ const Cards = (props) => {
   };
   const closeModal = () => {
     setModalIsOpen(false);
+    setDescriptionText(props.description)
   };
 
   const deleteCardHandler = () => {
