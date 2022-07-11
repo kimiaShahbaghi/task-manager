@@ -9,12 +9,12 @@ const initialState = {
         {
           id: `card-${0}`,
           text: "learn typescript",
-          description: undefined,
+          description: "HELLO THERE!",
         },
         {
           id: `card-${1}`,
           text: "learn api",
-          description: undefined,
+          description: "",
         },
       ],
     },
@@ -25,22 +25,22 @@ const initialState = {
         {
           id: `card-${2}`,
           text: "learn react",
-          description: undefined,
+          description: "",
         },
         {
           id: `card-${3}`,
           text: "learn sass",
-          description: undefined,
+          description: "",
         },
         {
           id: `card-${4}`,
           text: "learn tailwind",
-          description: undefined,
+          description: "",
         },
         {
           id: `card-${5}`,
           text: "learn bootstrap",
-          description: undefined,
+          description: "",
         },
       ],
     },
@@ -66,6 +66,7 @@ export const listSlice = createSlice({
       const newCard = {
         id: `list-${cardId}`,
         text: action.payload.text,
+        description: "",
       };
       ++cardId;
       const newState = state.lists.map((list) => {
