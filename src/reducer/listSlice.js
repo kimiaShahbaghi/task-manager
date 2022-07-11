@@ -46,7 +46,7 @@ const initialState = {
     },
   ],
 };
-let listId = 3;
+let listId = 2;
 let cardId = 6;
 
 export const listSlice = createSlice({
@@ -64,7 +64,7 @@ export const listSlice = createSlice({
     },
     addCard: (state, action) => {
       const newCard = {
-        id: `list-${cardId}`,
+        id: `card-${cardId}`,
         text: action.payload.text,
         description: "",
       };
