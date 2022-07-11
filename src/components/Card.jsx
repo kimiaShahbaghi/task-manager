@@ -56,9 +56,9 @@ const Cards = (props) => {
             {...provided.dragHandleProps}
           >
             <Card className={props.description ? "card border-card" : "card"} onClick={cardClickHandler}>
-              <Typography>{props.text}</Typography>
+              <Typography style={{wordBreak: "break-word"}}>{props.text}</Typography>
               <ClearIcon
-                style={{ float: "right", margin: 0 }}
+                className="delete_card"
                 fontSize="small"
                 onClick={deleteCardHandler}
               />

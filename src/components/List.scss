@@ -1,7 +1,10 @@
+$LIST_BACKGROUND: #dfe3e6;
+$PURPLE: rgb(161, 85, 205);
+
 .list {
-  background-color: #dfe3e6;
+  background-color: $LIST_BACKGROUND;
   border-radius: 3px;
-  width: 300px;
+  width: 272px;
   height: 100%;
   padding: 0.3rem;
   margin: 0.5rem;
@@ -21,13 +24,23 @@
       padding-left: 1rem;
       font-size: 1.1rem;
       overflow: hidden;
+
       &:focus {
-        background-color: white;
-        border: 1px solid black;
+        background-color: #fff;
+        border: 1px solid $PURPLE;
       }
     }
   }
   &__footer {
     justify-self: end;
+  }
+}
+.delete__icon {
+  float: right;
+
+  &:hover {
+    color: $PURPLE;
+    font-size: 1.6rem;
+    transform: rotate(-20deg);
   }
 }

@@ -1,11 +1,22 @@
+@use 'List';
+$CARD_BORDER: rgb(242, 153, 236);
+
 .card {
   padding: 0.8rem;
-  height: 4.2rem;
+  height: max-content;
   textarea {
     resize: none;
     border: none;
   }
+  .delete_card{
+    margin: 0;
+    float: right;
+    &:hover{
+      font-size: 1.1rem;
+      color: List.$PURPLE ;
+    }
+  }
 }
 .border-card {
-  border: 2px solid pink;
+  border: 2px solid $CARD_BORDER;
 }

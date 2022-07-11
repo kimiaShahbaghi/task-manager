@@ -48,7 +48,7 @@ const List = (props) => {
                         className="list__header__title"
                       />
                       <DeleteOutlineIcon
-                        style={{ float: "right" }}
+                        className="delete__icon"
                         onClick={deleteListHandler}
                       />
                     </div>
